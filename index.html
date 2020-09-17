@@ -432,7 +432,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="1-类的基本概念"><a href="#1-类的基本概念" class="headerlink" title="1.类的基本概念"></a>1.类的基本概念</h2><h3 id="1-1类型的声明和调用"><a href="#1-1类型的声明和调用" class="headerlink" title="1.1类型的声明和调用"></a>1.1类型的声明和调用</h3><ul>
+<li>类型接口的简单定义方式示例</li>
+</ul>
+<pre><code class="objc">//一般建议存放于单独的头文件  ex: Foo.h
+@interface Foo:NSObject
+{
+  //在interface中定义的属性名使用_开头
+  @public   //@public设置属性的访问权限为外部可以访问
+  int _width;
+  double _height;
+  NSString *_name;
+}
+/**方法定义区间**/
+// - (返回类型) 方法名:参数
+- (int) sayHi:(NSString *) str;
+@end
+</code></pre>
+<ul>
+<li>类型实现的简单方式</li>
+</ul>
+<pre><code class="objc">@implementation Foo
+
+- (int) sayHi:(NSString *)str
+{
+    NSLog(@&quot;%@,I‘m %@,I&#39;m %f cm tail!&quot;,str,_name,_height);
+    return 0;
+}
+@end
+</code></pre>
+<ul>
+<li>简单的类型示例初始化以及使用</li>
+</ul>
+<pre><code class="objc">int main(int argc, const char * argv[])
+{
+    Foo *foo = [Foo new];
+        //Foo *foo = [[Foo alloc] init];  等效的初始化方式
+    foo-&gt;_name = @&quot;Jack&quot;;  //直接操作实例的成员属性
+    foo-&gt;_height= 180.59;
+    [foo sayHi:@&quot;Hello&quot;];  //Hello,I‘m Jack,I&#39;m 180.590000 cm tail!
+    return 0;
+}
+</code></pre>
+<h3 id="1-2-成员方法的声明和调用"><a href="#1-2-成员方法的声明和调用" class="headerlink" title="1.2 成员方法的声明和调用"></a>1.2 成员方法的声明和调用</h3><ul>
+<li>成员方法的声明代码示例</li>
+<li><code>@interface</code>中声明的方法，在实现类时必须要有对应实现</li>
+<li>实际应用中更推荐使用语义化的方法声明方式，更加有利于第三方调用</li>
+<li>方法命名最好使用<code>doSomethingWithXXX</code>句式,增强语义</li>
+</ul>
+<pre><code class="objc">@interface Foo:NSObject
+{
+  @public
+  int _width;
+  double _height;
+  NSString *_name;
+}
+/**
+ *普通的声明方式
+ */
+//无参数
+- (void) sayHello;
+//单个参数
+- (void) setHeight:(int)height;
+//多个参数
+- (int) sayWith:(NSString *) str :(int) age;
+
+/**
+ *更有语义化的声明方式
+ */
+- (void) setName:(NSString *) name andHeight:(int) height;
+@end
+/**方法的实现**/
+@implementation Foo
+- (void)sayHello
+{
+    NSLog(@&quot;Hello world!I&#39;m Foo!&quot;);
+}
+- (void)setHeight:(int)height
+{
+    _height = height;
+}
+- (int)sayWith:(NSString *)str :(int)age
+{
+    NSLog(@&quot;%@,I&#39;m %d years old&quot;,str,age);
+    return 0;
+}
+- (void)setName:(NSString *)name andHeight:(int)height
+{    //适合于封装属性的setter方法
+    _name = name;
+    _height = height;
+}
+@end
+</code></pre>
+<ul>
+<li>方法的实际调用示例代码</li>
+<li><code>[receiver selector]</code>这种方法调用方式成为消息传递</li>
+<li><code>receiver</code> - 接受者, <code>selector</code> - 选择器</li>
+</ul>
+<pre><code class="objc">int main(int argc, const char * argv[])
+{
+    @autoreleasepool {
+        Foo *foo = [Foo new];
+        [foo setHeight:180.59];  //普通方法调用
+        [foo setName:@&quot;Jack&quot; andHeight:170.88];  //语义化方法的调用
+          //普通的多参数方法调用
+        int rs = [foo sayWith:@&quot;Hello&quot; :20]; //Hello,I&#39;m 20 years old
+    }
+    return 0;
+}
+</code></pre>
+
       
 
       
@@ -730,6 +839,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">事件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
@@ -747,10 +860,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">阴影</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">事件</a>
               </li>
             
             <div class="clearfix"></div>
