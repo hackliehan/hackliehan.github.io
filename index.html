@@ -536,19 +536,19 @@
 
 
   
-    <article id="post-Objective-C学习笔记之-消息机制以及内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Objective-C笔记-杂项功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/14/Objective-C学习笔记之-消息机制以及内存管理/">Objective-C学习笔记之-消息机制以及内存管理</a>
+      <a class="article-title" href="/2015/12/14/Objective-C笔记-杂项功能/">Objective-C笔记-杂项功能</a>
     </h1>
   
 
         
-        <a href="/2015/12/14/Objective-C学习笔记之-消息机制以及内存管理/" class="archive-article-date">
+        <a href="/2015/12/14/Objective-C笔记-杂项功能/" class="archive-article-date">
   	<time datetime="2015-12-14T07:17:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-14</time>
 </a>
         
@@ -556,21 +556,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-OC的消息机制"><a href="#1-OC的消息机制" class="headerlink" title="1.OC的消息机制"></a>1.OC的消息机制</h2><h3 id="1-1消息的发送机制"><a href="#1-1消息的发送机制" class="headerlink" title="1.1消息的发送机制"></a>1.1消息的发送机制</h3><ul>
-<li>OC的消息发送机制，其作用近似于其他面向对象语言的方法调用</li>
-<li>OC的消息机制分为 接受者 和 选择器,如下:</li>
+        <h2 id="1-分段标记功能"><a href="#1-分段标记功能" class="headerlink" title="1.分段标记功能"></a>1.分段标记功能</h2><blockquote>
+<p><code>#pragma mark 分组名</code>  会在导航条对应的位置显示1个标题</p>
+</blockquote>
+<blockquote>
+<p><code>#pragma mark -</code>  会在导航条对应的位置显示1条水平分隔线</p>
+</blockquote>
+<blockquote>
+<p><code>#pragma mark - 分组名</code> 会在导航条对应的位置先产生1条水平分割线.再显示标题</p>
+</blockquote>
+<ul>
+<li>效果展示</li>
 </ul>
-<pre><code class="objc">//示例
-[foo doSomthing:params]
-//上述结构由以下结构构成
-[receiver selector:params]
--receiver 接受者
--selector 选择器
--params 参数
-</code></pre>
-        
-          <a class="article-more-a" href="/2015/12/14/Objective-C学习笔记之-消息机制以及内存管理/#more">more >></a>
-        
+<p><img src="WX20200918-181014.png" alt></p>
+
       
 
       
@@ -616,7 +615,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/12/14/Objective-C学习笔记之-消息机制以及内存管理/">展开全文 >></a>
+          <a class="article-more-a" href="/2015/12/14/Objective-C笔记-杂项功能/">展开全文 >></a>
         </p>
       
 
