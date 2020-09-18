@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://blog.lakerbin.ga">
   <title>Objective-C学习笔记之-消息机制以及内存管理 | LakerBin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.OC的消息机制1.1消息的发送机制 OC的消息发送机制，其作用近似于其他面向对象语言的方法调用 OC的消息机制分为 接受者 和 选择器,如下:  //示例 [foo doSomthing:params] //上述结构由以下结构构成 [receiver selector:params] -receiver 接受者 -selector 选择器 -params 参数  1.2 向nil发送消息 ni">
+  <meta name="description" content="1.OC的消息机制1.1消息的发送机制 OC的消息发送机制，其作用近似于其他面向对象语言的方法调用 OC的消息机制分为 接受者 和 选择器,如下:  //示例 [foo doSomthing:params] //上述结构由以下结构构成 [receiver selector:params] -receiver 接受者 -selector 选择器 -params 参数">
 <meta name="keywords" content="Objective-C,iOS,Note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C学习笔记之-消息机制以及内存管理">
 <meta property="og:url" content="http://blog.lakerbin.ga/2015/12/14/Objective-C学习笔记之-消息机制以及内存管理/index.html">
 <meta property="og:site_name" content="LakerBin&#39;s blog">
-<meta property="og:description" content="1.OC的消息机制1.1消息的发送机制 OC的消息发送机制，其作用近似于其他面向对象语言的方法调用 OC的消息机制分为 接受者 和 选择器,如下:  //示例 [foo doSomthing:params] //上述结构由以下结构构成 [receiver selector:params] -receiver 接受者 -selector 选择器 -params 参数  1.2 向nil发送消息 ni">
+<meta property="og:description" content="1.OC的消息机制1.1消息的发送机制 OC的消息发送机制，其作用近似于其他面向对象语言的方法调用 OC的消息机制分为 接受者 和 选择器,如下:  //示例 [foo doSomthing:params] //上述结构由以下结构构成 [receiver selector:params] -receiver 接受者 -selector 选择器 -params 参数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-09-17T02:17:21.421Z">
+<meta property="og:updated_time" content="2020-09-18T09:25:55.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C学习笔记之-消息机制以及内存管理">
-<meta name="twitter:description" content="1.OC的消息机制1.1消息的发送机制 OC的消息发送机制，其作用近似于其他面向对象语言的方法调用 OC的消息机制分为 接受者 和 选择器,如下:  //示例 [foo doSomthing:params] //上述结构由以下结构构成 [receiver selector:params] -receiver 接受者 -selector 选择器 -params 参数  1.2 向nil发送消息 ni">
+<meta name="twitter:description" content="1.OC的消息机制1.1消息的发送机制 OC的消息发送机制，其作用近似于其他面向对象语言的方法调用 OC的消息机制分为 接受者 和 选择器,如下:  //示例 [foo doSomthing:params] //上述结构由以下结构构成 [receiver selector:params] -receiver 接受者 -selector 选择器 -params 参数">
   
     <link rel="alternative" href="/atom.xml" title="LakerBin&#39;s blog" type="application/atom+xml">
   
@@ -187,13 +187,13 @@
 -selector 选择器
 -params 参数
 </code></pre>
+<a id="more"></a>
 <h3 id="1-2-向nil发送消息"><a href="#1-2-向nil发送消息" class="headerlink" title="1.2 向nil发送消息"></a>1.2 向nil发送消息</h3><ul>
 <li><code>nil</code>对消息无响应，不报错</li>
 </ul>
 <pre><code class="objc">Foo *foo = nil;
 [foo doSomthing]; //此操作不会有任何响应，也不会报错
 </code></pre>
-<a id="more"></a>
 <ul>
 <li><code>nil</code>对消息的返回值</li>
 </ul>

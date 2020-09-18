@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="LakerBin&#39;s blog">
 <meta property="og:description" content="1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-09-17T09:44:56.649Z">
+<meta property="og:image" content="http://blog.lakerbin.ga/2016/01/17/Objective-C笔记-类与对象/类与对象的内存表示图.png">
+<meta property="og:updated_time" content="2020-09-18T09:26:04.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C笔记-类与对象">
 <meta name="twitter:description" content="1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
+<meta name="twitter:image" content="http://blog.lakerbin.ga/2016/01/17/Objective-C笔记-类与对象/类与对象的内存表示图.png">
   
     <link rel="alternative" href="/atom.xml" title="LakerBin&#39;s blog" type="application/atom+xml">
   
@@ -224,14 +226,10 @@
 <li>实际应用中更推荐使用语义化的方法声明方式，更加有利于第三方调用</li>
 <li>方法命名最好使用<code>doSomethingWithXXX</code>句式,增强语义</li>
 </ul>
-<pre><code class="objc">@interface Foo:NSObject
-{
-  @public
-  int _width;
-  double _height;
-  NSString *_name;
-}
-/**
+<blockquote>
+<p>一般方法声明</p>
+</blockquote>
+<pre><code class="objc">/**
  *普通的声明方式
  */
 //无参数
@@ -240,13 +238,19 @@
 - (void) setHeight:(int)height;
 //多个参数
 - (int) sayWith:(NSString *) str :(int) age;
-
-/**
+</code></pre>
+<blockquote>
+<p>语义化声明</p>
+</blockquote>
+<pre><code class="objc">/**
  *更有语义化的声明方式
  */
 - (void) setName:(NSString *) name andHeight:(int) height;
-@end
-/**方法的实现**/
+</code></pre>
+<blockquote>
+<p>各类方法的实现</p>
+</blockquote>
+<pre><code class="objc">/**方法的实现**/
 @implementation Foo
 - (void)sayHello
 {
@@ -270,7 +274,7 @@
 </code></pre>
 <ul>
 <li>方法的实际调用示例代码</li>
-<li><code>[receiver selector]</code>这种方法调用方式成为消息传递</li>
+<li><code>[receiver selector]</code>这种方法调用方式称为消息传递</li>
 <li><code>receiver</code> - 接受者, <code>selector</code> - 选择器</li>
 </ul>
 <pre><code class="objc">int main(int argc, const char * argv[])
@@ -285,6 +289,41 @@
     return 0;
 }
 </code></pre>
+<h2 id="2-类与对象在内存中的存储"><a href="#2-类与对象在内存中的存储" class="headerlink" title="2.类与对象在内存中的存储"></a>2.类与对象在内存中的存储</h2><h3 id="2-1内存中的五大区域"><a href="#2-1内存中的五大区域" class="headerlink" title="2.1内存中的五大区域"></a>2.1内存中的五大区域</h3><blockquote>
+<ul>
+<li><strong>栈</strong>         存储局部变量</li>
+<li><strong>堆</strong>         开发者手动申请的字节空间,存储结构性数据</li>
+<li><strong>BSS段</strong>    存储未被初始化的全局变量，静态变量</li>
+<li><strong>数据段</strong>   存储已被初始化的 全局，静态变量 常量数据</li>
+<li><strong>代码段</strong>   存储程序的代码</li>
+</ul>
+</blockquote>
+<h3 id="2-2对象在内存中的存储"><a href="#2-2对象在内存中的存储" class="headerlink" title="2.2对象在内存中的存储"></a>2.2对象在内存中的存储</h3><ul>
+<li>使用<code>Foo *foo = [Foo new]</code>或<code>Foo *foo = [[Foo alloc] init]</code>创建对象</li>
+<li><code>Foo *foo</code>会在栈内存中申请一块空间,并申明<code>Foo</code>类型的指针变量</li>
+<li><code>new</code>或<code>alloc init</code>做的事情:<ul>
+<li>在堆内存中申请一块大小合适的空间</li>
+<li>在内存空间中跟进类型的模板创建对象<ul>
+<li>根据模板声明对象的属性</li>
+<li>同时声明一个<code>isa</code>指针,指向<code>类在代码段中的地址</code>，类的<code>成员方法</code>也存储在代码段的类当中</li>
+<li><code>方法的调用</code>是根据<code>isa</code>找到相应的类定义，再调用相应方法</li>
+</ul>
+</li>
+<li>初始化成员属性的值<ul>
+<li>如果属性的类型是基本数据类型，则初始值为<code>0</code></li>
+<li>如果属性的类型是C指针类型,则初始值为<code>NULL</code></li>
+<li>如果属性的类型时OC指针类型,则初始值为nil</li>
+<li>属性不允许在声明的时候进行手动赋值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-空值"><a href="#2-3-空值" class="headerlink" title="2.3 空值"></a>2.3 空值</h3><ul>
+<li><code>NULL</code>和<code>nil</code>都可以看做一个宏,等价于<code>0</code></li>
+<li><code>NULL</code>和<code>nil</code>只能作为指针变量的值，两者可以互相替代，但不建议</li>
+</ul>
+<h3 id="2-4-类与对象内存表示图"><a href="#2-4-类与对象内存表示图" class="headerlink" title="2.4 类与对象内存表示图"></a>2.4 类与对象内存表示图</h3><p><img src="类与对象的内存表示图.png" alt></p>
 
       
 
@@ -450,7 +489,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1.类的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1类型的声明和调用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1类型的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-成员方法的声明和调用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 成员方法的声明和调用</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1.类的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1类型的声明和调用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1类型的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-成员方法的声明和调用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 成员方法的声明和调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-类与对象在内存中的存储"><span class="toc-number">2.</span> <span class="toc-text">2.类与对象在内存中的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1内存中的五大区域"><span class="toc-number">2.1.</span> <span class="toc-text">2.1内存中的五大区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2对象在内存中的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2对象在内存中的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-空值"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 空值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-类与对象内存表示图"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 类与对象内存表示图</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
