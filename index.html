@@ -435,6 +435,105 @@
 
 
   
+    <article id="post-Objective-C笔记-工具类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/20/Objective-C笔记-工具类型/">Objective-C笔记-工具类型</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/20/Objective-C笔记-工具类型/" class="archive-article-date">
+  	<time datetime="2016-01-20T07:46:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-NSString-类型"><a href="#1-NSString-类型" class="headerlink" title="1.NSString 类型"></a>1.<code>NSString</code> 类型</h2><h3 id="1-1-常用的类方法"><a href="#1-1-常用的类方法" class="headerlink" title="1.1 常用的类方法"></a>1.1 常用的类方法</h3>
+        
+          <a class="article-more-a" href="/2016/01/20/Objective-C笔记-工具类型/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/移动端//" class="article-tag-list-link color4">移动端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/移动端/iOS//" class="article-tag-list-link color4">iOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/20/Objective-C笔记-工具类型/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Objective-C笔记-类与对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -543,13 +642,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/14/Objective-C笔记-杂项功能/">Objective-C笔记-杂项功能</a>
+      <a class="article-title" href="/2016/01/14/Objective-C笔记-杂项功能/">Objective-C笔记-杂项功能</a>
     </h1>
   
 
         
-        <a href="/2015/12/14/Objective-C笔记-杂项功能/" class="archive-article-date">
-  	<time datetime="2015-12-14T07:17:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-14</time>
+        <a href="/2016/01/14/Objective-C笔记-杂项功能/" class="archive-article-date">
+  	<time datetime="2016-01-14T07:17:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-14</time>
 </a>
         
       </header>
@@ -569,6 +668,35 @@
 <li>效果展示</li>
 </ul>
 <p><img src="WX20200918-181014.png" alt></p>
+<h2 id="2-异常处理"><a href="#2-异常处理" class="headerlink" title="2.异常处理"></a>2.异常处理</h2><h3 id="2-1异常的处理代码示例"><a href="#2-1异常的处理代码示例" class="headerlink" title="2.1异常的处理代码示例"></a>2.1异常的处理代码示例</h3><pre><code class="objc">@try{
+  Person *p1 = [Person new];
+  [p1 sayGoodBye]; //p1并未实现该方法
+}
+@catch(NSException *ex){
+  NSLog(@&quot;发生异常：%@&quot;,ex); //发生异常：-[Person sayGoodBye]: unrecognized selector sent to instance 0x10052a8a0
+}
+@finally{
+  NSLog(@&quot;代码块执行完毕&quot;); //无论是否有异常都会执行的代码块
+}
+</code></pre>
+<h3 id="2-2异常处理的局限性"><a href="#2-2异常处理的局限性" class="headerlink" title="2.2异常处理的局限性"></a>2.2异常处理的局限性</h3><blockquote>
+<ul>
+<li>无法很好的处理某些运行时的异常情况</li>
+<li>无法处理C语言的异常信息</li>
+<li>一般使用另外的方法处理一些非空校验</li>
+</ul>
+</blockquote>
+<pre><code class="objc">// 1.使用 respondsToSelector 方法获取类是否拥有对应选择器
+if([p1 respondsToSelector:@selector(sayGoodBye)])
+{
+  [p1 sayGoodBye];
+}
+// 2.判断指针变量是否指向空值
+if(p1 != nil)
+{
+  p1-&gt;_name = @&quot;jack&quot;;
+}            
+</code></pre>
 
       
 
@@ -615,7 +743,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/12/14/Objective-C笔记-杂项功能/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/01/14/Objective-C笔记-杂项功能/">展开全文 >></a>
         </p>
       
 

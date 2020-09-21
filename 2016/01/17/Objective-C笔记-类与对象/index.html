@@ -17,7 +17,7 @@
 <meta property="og:description" content="1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://blog.lakerbin.ga/2016/01/17/Objective-C笔记-类与对象/类与对象的内存表示图.png">
-<meta property="og:updated_time" content="2020-09-18T09:31:36.650Z">
+<meta property="og:updated_time" content="2020-09-21T07:14:44.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C笔记-类与对象">
 <meta name="twitter:description" content="1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
@@ -289,6 +289,21 @@
     return 0;
 }
 </code></pre>
+<h3 id="1-3-类方法"><a href="#1-3-类方法" class="headerlink" title="1.3 类方法"></a>1.3 类方法</h3><h4 id="1-3-1-类方法的声明"><a href="#1-3-1-类方法的声明" class="headerlink" title="1.3.1 类方法的声明"></a>1.3.1 类方法的声明</h4><pre><code class="objc">// .h文件中声明  + (返回值) 方法名:返回值 ...
++ (Foo *)foo;
++ (Foo *)fooWithName:(NSString *)name andAge:(int)age;
+</code></pre>
+<h4 id="1-3-2-类方法的用途和规范"><a href="#1-3-2-类方法的用途和规范" class="headerlink" title="1.3.2 类方法的用途和规范"></a>1.3.2 类方法的用途和规范</h4><blockquote>
+<ul>
+<li>类方法常用于创建对象,    OC的标准中,类需要声明一个同名的类方法用以创建一个新的纯对象</li>
+<li>类方法可以用于做类似构造方法的功能</li>
+<li>类方法不可调用:类的成员属性,不可使用self调用成员方法等</li>
+</ul>
+</blockquote>
+<pre><code class="objc">// OC的Fundation中都有符合规范的类方法实现
+[NSDate date]; // generate a new Date instance
+[NSString string]; //获得一个空字符串 @&quot;&quot;
+</code></pre>
 <h2 id="2-类与对象在内存中的存储"><a href="#2-类与对象在内存中的存储" class="headerlink" title="2.类与对象在内存中的存储"></a>2.类与对象在内存中的存储</h2><h3 id="2-1内存中的五大区域"><a href="#2-1内存中的五大区域" class="headerlink" title="2.1内存中的五大区域"></a>2.1内存中的五大区域</h3><blockquote>
 <ul>
 <li><strong>栈</strong>         存储局部变量</li>
@@ -451,17 +466,17 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/02/css3之半透明和多重边框/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/01/20/Objective-C笔记-工具类型/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          css3之半透明和多重边框
+          Objective-C笔记-工具类型
         
       </div>
     </a>
   
   
-    <a href="/2015/12/14/Objective-C笔记-杂项功能/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/01/14/Objective-C笔记-杂项功能/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Objective-C笔记-杂项功能</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -489,7 +504,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1.类的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1类型的声明和调用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1类型的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-成员方法的声明和调用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 成员方法的声明和调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-类与对象在内存中的存储"><span class="toc-number">2.</span> <span class="toc-text">2.类与对象在内存中的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1内存中的五大区域"><span class="toc-number">2.1.</span> <span class="toc-text">2.1内存中的五大区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2对象在内存中的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2对象在内存中的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-空值"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 空值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-类与对象内存表示图"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 类与对象内存表示图</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1.类的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1类型的声明和调用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1类型的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-成员方法的声明和调用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 成员方法的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-类方法"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-类方法的声明"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 类方法的声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-类方法的用途和规范"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 类方法的用途和规范</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-类与对象在内存中的存储"><span class="toc-number">2.</span> <span class="toc-text">2.类与对象在内存中的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1内存中的五大区域"><span class="toc-number">2.1.</span> <span class="toc-text">2.1内存中的五大区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2对象在内存中的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2对象在内存中的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-空值"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 空值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-类与对象内存表示图"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 类与对象内存表示图</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

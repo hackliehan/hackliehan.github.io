@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://blog.lakerbin.ga">
-  <title>Archives: 2015/12 | LakerBin&#39;s blog</title>
+  <title>Objective-C笔记-工具类型 | LakerBin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="LakerBin&#39;s blog">
-<meta property="og:url" content="http://blog.lakerbin.ga/archives/2015/12/index.html">
+  <meta name="description" content="1.NSString 类型1.1 常用的类方法">
+<meta name="keywords" content="Objective-C,iOS,Note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C笔记-工具类型">
+<meta property="og:url" content="http://blog.lakerbin.ga/2016/01/20/Objective-C笔记-工具类型/index.html">
 <meta property="og:site_name" content="LakerBin&#39;s blog">
+<meta property="og:description" content="1.NSString 类型1.1 常用的类方法">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-09-21T07:57:21.448Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LakerBin&#39;s blog">
+<meta name="twitter:title" content="Objective-C笔记-工具类型">
+<meta name="twitter:description" content="1.NSString 类型1.1 常用的类方法">
   
     <link rel="alternative" href="/atom.xml" title="LakerBin&#39;s blog" type="application/atom+xml">
   
@@ -150,36 +155,84 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Objective-C笔记-工具类型" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/14/Objective-C笔记-杂项功能/" class="archive-article-date">
-  	<time datetime="2015-12-14T07:17:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/14/Objective-C笔记-杂项功能/">Objective-C笔记-杂项功能</a>
+    <h1 class="article-title" itemprop="name">
+      Objective-C笔记-工具类型
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2016/01/20/Objective-C笔记-工具类型/" class="archive-article-date">
+  	<time datetime="2016-01-20T07:46:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-NSString-类型"><a href="#1-NSString-类型" class="headerlink" title="1.NSString 类型"></a>1.<code>NSString</code> 类型</h2><h3 id="1-1-常用的类方法"><a href="#1-1-常用的类方法" class="headerlink" title="1.1 常用的类方法"></a>1.1 常用的类方法</h3><a id="more"></a>
+<h4 id="1-1-1-stringWithUTF8String转换C语言字符串为OC字符串"><a href="#1-1-1-stringWithUTF8String转换C语言字符串为OC字符串" class="headerlink" title="1.1.1 stringWithUTF8String转换C语言字符串为OC字符串"></a>1.1.1 <code>stringWithUTF8String</code>转换C语言字符串为OC字符串</h4><pre><code class="objc">// + (instancetype)stringWithUTF8String:(const char *)nullTerminatedCString;
+char *str0 = &quot;lucky&quot;;
+NSString *str1 = [NSString stringWithUTF8String:str0];
+NSLog(@&quot;str1 = %@&quot;,str1); //str1 = lucky
+</code></pre>
+<h4 id="1-1-2-stringWithFormat使用各类型变量拼接字符串"><a href="#1-1-2-stringWithFormat使用各类型变量拼接字符串" class="headerlink" title="1.1.2 stringWithFormat使用各类型变量拼接字符串"></a>1.1.2 <code>stringWithFormat</code>使用各类型变量拼接字符串</h4><pre><code class="objc">// + (instancetype)stringWithFormat:(NSString *)format, ...
+int age = 19;
+NSString *name = @&quot;Jack&quot;;
+NSString *str =  [NSString stringWithFormat:@&quot;I&#39;m %@,I&#39;m %d years old!&quot;,name,age];
+NSLog(@&quot;str = %@&quot;,str); // str = I&#39;m Jack,I&#39;m 19 years old!
+</code></pre>
+<h3 id="1-2-常用的成员方法"><a href="#1-2-常用的成员方法" class="headerlink" title="1.2 常用的成员方法"></a>1.2 常用的成员方法</h3><h4 id="1-2-1-length方法获取字符串长度"><a href="#1-2-1-length方法获取字符串长度" class="headerlink" title="1.2.1 length方法获取字符串长度"></a>1.2.1 <code>length</code>方法获取字符串长度</h4><h4 id="1-2-2-charactorAtIndex方法获取对应下表字符"><a href="#1-2-2-charactorAtIndex方法获取对应下表字符" class="headerlink" title="1.2.2 charactorAtIndex方法获取对应下表字符"></a>1.2.2 <code>charactorAtIndex</code>方法获取对应下表字符</h4><pre><code class="objc">//- (unichar)characterAtIndex:(NSUInteger)index;
+NSString *str =  @&quot;Hello World&quot;;
+unichar ch =  [str characterAtIndex:2];
+NSLog(@&quot;char is %C&quot;); // char is l    unichar占两个字节，使用C做打印占位
+</code></pre>
+<h4 id="1-2-3-isEqualToString方法比较字符串内容"><a href="#1-2-3-isEqualToString方法比较字符串内容" class="headerlink" title="1.2.3 isEqualToString方法比较字符串内容"></a>1.2.3 <code>isEqualToString</code>方法比较字符串内容</h4><pre><code class="objc">//- (BOOL)isEqualToString:(NSString *)aString;
+NSString *str1 = @&quot;hello&quot;;
+NSString *str2 = @&quot;hello&quot;;
+BOOL isEqual = [str1 isEqualToString str2]; // 1
+
+</code></pre>
+<h4 id="1-2-4-compare方法进行字符串大小比较"><a href="#1-2-4-compare方法进行字符串大小比较" class="headerlink" title="1.2.4 compare方法进行字符串大小比较"></a>1.2.4 <code>compare</code>方法进行字符串大小比较</h4><pre><code class="objc">//- (NSComparisonResult)compare:(NSString *)string;
+NSString *str1 = @&quot;hello&quot;;
+NSString *str2 = @&quot;Glad&quot;;
+[str1 compare str2]; // 1  返回一个枚举值
+// -1 =&gt; 小于  0=&gt;等于  1=&gt;大于
+</code></pre>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,7 +252,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -216,17 +269,126 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://blog.lakerbin.ga/2016/01/20/Objective-C笔记-工具类型/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/02/css3之半透明和多重边框/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          css3之半透明和多重边框
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2016/01/17/Objective-C笔记-类与对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Objective-C笔记-类与对象</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-NSString-类型"><span class="toc-number">1.</span> <span class="toc-text">1.NSString 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-常用的类方法"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 常用的类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-stringWithUTF8String转换C语言字符串为OC字符串"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 stringWithUTF8String转换C语言字符串为OC字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-stringWithFormat使用各类型变量拼接字符串"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 stringWithFormat使用各类型变量拼接字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-常用的成员方法"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 常用的成员方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-length方法获取字符串长度"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 length方法获取字符串长度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-charactorAtIndex方法获取对应下表字符"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 charactorAtIndex方法获取对应下表字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-isEqualToString方法比较字符串内容"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 isEqualToString方法比较字符串内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-compare方法进行字符串大小比较"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 compare方法进行字符串大小比较</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -249,8 +411,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
