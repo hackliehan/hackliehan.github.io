@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://blog.lakerbin.ga">
   <title>Objective-C笔记-类与对象 | LakerBin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
+  <meta name="description" content="作者: Laker Bin 字数: 7175 原创版权所有,转载请注明出处  1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
 <meta name="keywords" content="Objective-C,iOS,Note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C笔记-类与对象">
 <meta property="og:url" content="http://blog.lakerbin.ga/2016/01/17/Objective-C笔记-类与对象/index.html">
 <meta property="og:site_name" content="LakerBin&#39;s blog">
-<meta property="og:description" content="1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
+<meta property="og:description" content="作者: Laker Bin 字数: 7175 原创版权所有,转载请注明出处  1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://blog.lakerbin.ga/2016/01/17/Objective-C笔记-类与对象/类与对象的内存表示图.png">
-<meta property="og:updated_time" content="2020-09-21T08:24:28.603Z">
+<meta property="og:updated_time" content="2020-09-27T08:03:12.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C笔记-类与对象">
-<meta name="twitter:description" content="1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
+<meta name="twitter:description" content="作者: Laker Bin 字数: 7175 原创版权所有,转载请注明出处  1.类的基本概念1.1类型的声明和调用 类型接口的简单定义方式示例">
 <meta name="twitter:image" content="http://blog.lakerbin.ga/2016/01/17/Objective-C笔记-类与对象/类与对象的内存表示图.png">
   
     <link rel="alternative" href="/atom.xml" title="LakerBin&#39;s blog" type="application/atom+xml">
@@ -177,7 +177,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-类的基本概念"><a href="#1-类的基本概念" class="headerlink" title="1.类的基本概念"></a>1.类的基本概念</h2><h3 id="1-1类型的声明和调用"><a href="#1-1类型的声明和调用" class="headerlink" title="1.1类型的声明和调用"></a>1.1类型的声明和调用</h3><ul>
+        <blockquote>
+<p>作者: Laker Bin</p>
+<p>字数: 7175</p>
+<p>原创版权所有,转载请注明出处</p>
+</blockquote>
+<h2 id="1-类的基本概念"><a href="#1-类的基本概念" class="headerlink" title="1.类的基本概念"></a>1.类的基本概念</h2><h3 id="1-1类型的声明和调用"><a href="#1-1类型的声明和调用" class="headerlink" title="1.1类型的声明和调用"></a>1.1类型的声明和调用</h3><ul>
 <li>类型接口的简单定义方式示例</li>
 </ul>
 <a id="more"></a>
@@ -216,6 +221,8 @@
         //Foo *foo = [[Foo alloc] init];  等效的初始化方式
     foo-&gt;_name = @&quot;Jack&quot;;  //直接操作实例的成员属性
     foo-&gt;_height= 180.59;
+    [Foo new]-&gt;_name;
+    [[Foo new] sayHi]; //使用匿名对象的访问方式,而不通过指针变量调用，适合单次调用，优雅语法
     [foo sayHi:@&quot;Hello&quot;];  //Hello,I‘m Jack,I&#39;m 180.590000 cm tail!
     return 0;
 }
@@ -229,6 +236,9 @@
 </ul>
 <blockquote>
 <p>一般方法声明</p>
+<ul>
+<li>注意: 方法的<strong>形参</strong>是<code>局部变量</code>,存储在<code>栈内存</code>zhong </li>
+</ul>
 </blockquote>
 <pre><code class="objc">/**
  *普通的声明方式
@@ -307,6 +317,14 @@
 [NSString string]; //获得一个空字符串 @&quot;&quot;
 </code></pre>
 <p><br></p>
+<h3 id="1-4-类型之间的关系"><a href="#1-4-类型之间的关系" class="headerlink" title="1.4 类型之间的关系"></a>1.4 类型之间的关系</h3><blockquote>
+<ul>
+<li>组合关系 - 一个类型本身由其他几个类型作为属性组合而来</li>
+<li>依赖关系 - 一个类型的一些方法依赖其他类型的对象作为参数,产生依赖(耦合)关系</li>
+<li>关联关系 - 一个类与另外一个类有从属关系，例如<code>人类</code> 会拥有<code>衣服类</code>类型的属性</li>
+</ul>
+</blockquote>
+<p><br></p>
 <p><br></p>
 <h2 id="2-类与对象在内存中的存储"><a href="#2-类与对象在内存中的存储" class="headerlink" title="2.类与对象在内存中的存储"></a>2.类与对象在内存中的存储</h2><h3 id="2-1内存中的五大区域"><a href="#2-1内存中的五大区域" class="headerlink" title="2.1内存中的五大区域"></a>2.1内存中的五大区域</h3><blockquote>
 <ul>
@@ -346,6 +364,252 @@
 </ul>
 <p><br></p>
 <h3 id="2-4-类与对象内存表示图"><a href="#2-4-类与对象内存表示图" class="headerlink" title="2.4 类与对象内存表示图"></a>2.4 类与对象内存表示图</h3><p><img src="类与对象的内存表示图.png" alt></p>
+<h2 id="3-类型的封装"><a href="#3-类型的封装" class="headerlink" title="3. 类型的封装"></a>3. 类型的封装</h2><h3 id="3-1-普通属性封装以及访问修饰符"><a href="#3-1-普通属性封装以及访问修饰符" class="headerlink" title="3.1 普通属性封装以及访问修饰符"></a>3.1 普通属性封装以及访问修饰符</h3><blockquote>
+<ul>
+<li>与其他面向对象的语言类似,使用<code>setter</code>与<code>getter</code>方法限制使用者对类内部属性的操作</li>
+<li><code>@public</code> - 可公开访问,<strong>一般不轻易使用</strong></li>
+<li><code>@protected</code>  - 受保护的属性，可供子类访问, <strong>默认就是使用此修饰符</strong></li>
+<li><code>@private</code> - 私有属性，只可内部访问</li>
+<li><code>@package</code> - 限制只可在框架内被访问</li>
+</ul>
+</blockquote>
+<pre><code class="objc">@public  //影响多行
+NSString *favorate;
+int age;
+@protected NSString famally;  //影响单行
+</code></pre>
+<p><br></p>
+<h3 id="3-2-static关键字"><a href="#3-2-static关键字" class="headerlink" title="3.2 static关键字"></a>3.2 <code>static</code>关键字</h3><blockquote>
+<ul>
+<li><code>static</code>修饰符只能修饰局部变量.使其变为静态变量，存储在常量区，方法执行完毕后不会被回收,下次执行时直接调用，而不会再次声明赋值</li>
+</ul>
+</blockquote>
+<pre><code class="objc">/*类中定义方法*/
+...
+-(void) sayHi
+{
+    static int count = 0;
+    count++;
+    NSLog(@&quot;Hi,%d&quot;,count);
+}
+...
+/*调用时*/
+...
+Foo *foo = [Foo new];
+[foo sayHi]; //Hi,1
+[foo sayHi]; //Hi,2
+</code></pre>
+<p><br></p>
+<h3 id="3-3-self关键字在成员方法中使用"><a href="#3-3-self关键字在成员方法中使用" class="headerlink" title="3.3 self关键字在成员方法中使用"></a>3.3 <code>self</code>关键字在<code>成员方法</code>中使用</h3><blockquote>
+<ul>
+<li><code>self</code>在<code>成员方法</code>中是一个指向<code>对象本身</code>的指针变量</li>
+<li><code>self</code>调用成员变量,以跟方法中的局部变量做区分</li>
+<li><code>self</code>调用其他的成员方法</li>
+</ul>
+</blockquote>
+<pre><code class="objc">...
+-(void)sayHi
+{
+  NSString *lang = [self getLang];
+  if([lang isEqualToString:@&quot;CN&quot;]){
+    [self say:@&quot;嗨!&quot;];
+  }else{
+    [self say:@&quot;Hi!&quot;];
+  }
+}
+...
+</code></pre>
+<p><br></p>
+<h3 id="3-4-self关键字在类方法中使用"><a href="#3-4-self关键字在类方法中使用" class="headerlink" title="3.4 self关键字在类方法中使用"></a>3.4 <code>self</code>关键字在<code>类方法</code>中使用</h3><blockquote>
+<ul>
+<li><code>self</code>在<code>类方法</code>中是一个指向类本身的指针变量</li>
+<li><code>self</code>调用类的其他<code>类方法</code></li>
+<li>获取类在<code>代码段</code>中的地址的常用方法<ul>
+<li>通过调试查看对象的<code>isa</code>指针的值</li>
+<li>在类方法中查看<code>self</code>的值</li>
+<li>调用对象的<code>class</code>方法</li>
+<li>调用类的<code>class</code>类方法</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code class="objc">...
+-(void)foo
+{
+  return [Foo new]
+}
+-(void)fooWithName:(NSString *)name
+{
+  Foo *foo = [Foo new];
+  [foo setName:name];
+  return foo;
+}
+...
+</code></pre>
+<p><br></p>
+<p><br></p>
+<h2 id="4-类的继承"><a href="#4-类的继承" class="headerlink" title="4.类的继承"></a>4.类的继承</h2><h3 id="4-1-继承的基本特征"><a href="#4-1-继承的基本特征" class="headerlink" title="4.1 继承的基本特征"></a>4.1 继承的基本特征</h3><blockquote>
+<ul>
+<li>单根性 - OC中一个类只能拥有一个父类</li>
+<li>所有类都是由<code>NSObject</code>类往下派生的,它实现了<code>new</code>方法并且拥有<code>isa指针</code>，以供其他类继承</li>
+<li>子类的<code>声明</code>中不能存在和父类同名的<code>属性</code>和<code>方法</code></li>
+</ul>
+</blockquote>
+<pre><code class="objc">...
+@interface Parent:NSObject
+{
+  NSString *_name;
+  int _age;
+}
+-(void)speak;
+@end
+...
+@interface Child:Parent
+{
+  NSString *_favo;
+}
+-(void)study;
+@end
+...
+Child *child = [Child new];
+[child speak];
+</code></pre>
+<p><br></p>
+<h3 id="4-2-super关键字"><a href="#4-2-super关键字" class="headerlink" title="4.2 super关键字"></a>4.2 <code>super</code>关键字</h3><blockquote>
+<ul>
+<li>从<code>父类</code>中继承得到的属性和方法可以通过<code>super</code>调用，也可以通过对象直接调用</li>
+<li><code>super</code>特定调用从父类中继承的属性或者方法</li>
+</ul>
+</blockquote>
+<pre><code class="objc">...
+@interface Child:Parent
+{
+  NSString *_favo;
+}
+-(void)study;
+@end
+@implementation Child
+-(void)study
+{
+  [super speak];
+}
+@end
+...
+</code></pre>
+<p><br></p>
+<h3 id="4-3-私有属性的继承"><a href="#4-3-私有属性的继承" class="headerlink" title="4.3 私有属性的继承"></a>4.3 <code>私有属性</code>的继承</h3><blockquote>
+<ul>
+<li>子类无法直接使用父类的私有属性,单可调用相应的<code>setter</code>和<code>getter</code>方法</li>
+</ul>
+</blockquote>
+<p><br></p>
+<h3 id="4-4-私有属性和私有方法"><a href="#4-4-私有属性和私有方法" class="headerlink" title="4.4 私有属性和私有方法"></a>4.4 <code>私有属性</code>和<code>私有方法</code></h3><blockquote>
+<ul>
+<li><code>@private</code>修饰的属性虽然是私有属性,但在编码时仍然会有相应的提示，只是无权访问</li>
+<li>在<code>@implementation</code>中的大括号中<strong>单独</strong>声明的属性,则既具有<code>私有</code>的属性，又不会被编辑器提示</li>
+</ul>
+</blockquote>
+<pre><code class="objc">...
+@interface Child:Parent
+{
+  @private
+  NSString *_favo;  //私有属性的一般实现,不过依然在IDE中被提示
+}
+...
+@end
+@implementation Child
+{
+  NSString *_secret; //另一种私有属性的实现,只能在Child中调用，而且编码工具不会提示
+}
+...
+@end
+...
+</code></pre>
+<blockquote>
+<ul>
+<li><code>私有方法</code>的实现，只需要在<code>@implementation</code>中写实现代码，而不在<code>@interface</code>中写声明即可</li>
+</ul>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<h2 id="5-多态"><a href="#5-多态" class="headerlink" title="5.多态"></a>5.多态</h2><h3 id="5-1-里氏替换原则LSP"><a href="#5-1-里氏替换原则LSP" class="headerlink" title="5.1 里氏替换原则LSP"></a>5.1 里氏替换原则<code>LSP</code></h3><h4 id="5-1-1-基本概念"><a href="#5-1-1-基本概念" class="headerlink" title="5.1.1 基本概念"></a>5.1.1 基本概念</h4><blockquote>
+<ul>
+<li>子类可以替换父类的位置,当一个<code>父类类型指针</code>指向一个<code>子类类型对象</code>时即符合<code>LSP</code></li>
+</ul>
+</blockquote>
+<pre><code class="objc">//使用LSP可以更好的利用类型的共性
+Parent *p = [Child new];
+[p speak];
+...
+Parent *pList[2];
+pList[0] = [Child1 new];
+pList[1] = [Child2 new];
+...
+NSObject *objs[2];
+objs[0] = [Child1 new];
+objs[1] = @&quot;hello!&quot;;
+</code></pre>
+<blockquote>
+<ul>
+<li>当一个指针变量指向一个子类的对象时(符合LSP),其只能调用该子类对象中从父类继承的父类成员，而无法调用子类独有的成员</li>
+</ul>
+</blockquote>
+<p><br></p>
+<h3 id="5-2-方法的重写"><a href="#5-2-方法的重写" class="headerlink" title="5.2 方法的重写"></a>5.2 方法的重写</h3><h4 id="5-2-1重写的基本概念"><a href="#5-2-1重写的基本概念" class="headerlink" title="5.2.1重写的基本概念"></a>5.2.1重写的基本概念</h4><blockquote>
+<ul>
+<li>子类只在<code>@implementation</code>中再次实现<code>父类</code>的某个方法以适用于自身的业务逻辑，即为<code>方法重写(override)</code></li>
+</ul>
+</blockquote>
+<pre><code class="objc">...
+@interface Person:NSObject
+-(void)speak;
+@end
+@implementation Person
+-(void)speak
+{
+  NSLog(@&quot;&amp;%%^%&amp;%^$^%!&quot;);
+}
+...
+@interface Chinese:Person
+//...
+@end
+@implementation Chinese
+-(void)speak
+{
+  NSLog(@&quot;我在讲中文!&quot;);
+}
+...
+@interface Foreigner:Person
+//...
+@end
+@implementation Foreigner
+-(void)speak
+{
+  NSLog(@&quot;I’m speaking English!!&quot;);
+}
+...
+</code></pre>
+<h4 id="5-2-2-description方法的重写"><a href="#5-2-2-description方法的重写" class="headerlink" title="5.2.2 description方法的重写"></a>5.2.2 <code>description</code>方法的重写</h4><blockquote>
+<ul>
+<li>一般而言<code>description</code>方法获取到的对象内容为<code>@&quot;&lt;对象所属的类名:对象的地址&gt;&quot;</code>格式的字符串,重写此方法可以重新定义<code>%@</code>的打印内容</li>
+</ul>
+</blockquote>
+<pre><code class="objc">@interface Foo:NSObject
+{
+  NSString *_name;
+}
+@end
+@implementation Foo
+-(NSString *)description
+{
+  return [NSString stringWithFormat:@&quot;姓名%@&quot;,_name];
+}
+...
+//未重写时
+NSLog(@&quot;%@&quot;,[Foo new]); //&lt;Foo:0x12dhh1&gt;
+//重写后
+NSLog(@&quot;%@&quot;,[Foo new]); //姓名nil
+</code></pre>
 
       
 
@@ -511,7 +775,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1.类的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1类型的声明和调用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1类型的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-成员方法的声明和调用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 成员方法的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-类方法"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-类方法的声明"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 类方法的声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-类方法的用途和规范"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 类方法的用途和规范</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-类与对象在内存中的存储"><span class="toc-number">2.</span> <span class="toc-text">2.类与对象在内存中的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1内存中的五大区域"><span class="toc-number">2.1.</span> <span class="toc-text">2.1内存中的五大区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2对象在内存中的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2对象在内存中的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-空值"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 空值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-类与对象内存表示图"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 类与对象内存表示图</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1.类的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1类型的声明和调用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1类型的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-成员方法的声明和调用"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 成员方法的声明和调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-类方法"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-类方法的声明"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 类方法的声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-类方法的用途和规范"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 类方法的用途和规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-类型之间的关系"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 类型之间的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-类与对象在内存中的存储"><span class="toc-number">2.</span> <span class="toc-text">2.类与对象在内存中的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1内存中的五大区域"><span class="toc-number">2.1.</span> <span class="toc-text">2.1内存中的五大区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2对象在内存中的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2对象在内存中的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-空值"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 空值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-类与对象内存表示图"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 类与对象内存表示图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-类型的封装"><span class="toc-number">3.</span> <span class="toc-text">3. 类型的封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-普通属性封装以及访问修饰符"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 普通属性封装以及访问修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-static关键字"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 static关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-self关键字在成员方法中使用"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 self关键字在成员方法中使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-self关键字在类方法中使用"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 self关键字在类方法中使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-类的继承"><span class="toc-number">4.</span> <span class="toc-text">4.类的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-继承的基本特征"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 继承的基本特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-super关键字"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 super关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-私有属性的继承"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 私有属性的继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-私有属性和私有方法"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 私有属性和私有方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-多态"><span class="toc-number">5.</span> <span class="toc-text">5.多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-里氏替换原则LSP"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 里氏替换原则LSP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-1-基本概念"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1 基本概念</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-方法的重写"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 方法的重写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1重写的基本概念"><span class="toc-number">5.2.1.</span> <span class="toc-text">5.2.1重写的基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-description方法的重写"><span class="toc-number">5.2.2.</span> <span class="toc-text">5.2.2 description方法的重写</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -636,15 +900,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">事件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">H5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">事件</a>
               </li>
              
               <li class="article-tag-list-item">
